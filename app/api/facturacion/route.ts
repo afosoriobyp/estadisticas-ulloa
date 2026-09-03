@@ -79,8 +79,8 @@ async function fetchMonth(startDate: string, endDate: string): Promise<number> {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const startRaw = searchParams.get("startDate") ?? "2023-11-01";
-  const endRaw = searchParams.get("endDate") ?? "2025-12-30";
+  const startRaw = searchParams.get("startDate") ?? "2026-01-01";
+  const endRaw = searchParams.get("endDate") ?? new Date().toISOString().slice(0, 10);
 
   const start = parseDateISO(startRaw);
   const end = parseDateISO(endRaw);

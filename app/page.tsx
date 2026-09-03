@@ -4,8 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Bar, Line } from "@/components/charts";
 import type { FacturacionResponse, MonthDatum } from "@/lib/types";
 
-const DEFAULT_FROM = "2023-11-01";
-const DEFAULT_TO = "2025-12-30";
+const DEFAULT_FROM = "2026-01-01";
+const DEFAULT_TO = new Date().toISOString().slice(0, 10);
 
 function formatDate(iso: string): string {
   const d = new Date(`${iso}T00:00:00`);
