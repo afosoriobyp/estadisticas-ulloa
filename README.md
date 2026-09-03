@@ -15,6 +15,7 @@ facturación realizadas, obteniendo los datos desde la API de Recaudamas.
 - Gráfico de **barras** (consultas por mes) y de **línea** (tendencia).
 - Tabla de **detalle mensual** con estado OK/Error por mes.
 - Selector de rango de fechas y botón **Actualizar** (recarga bajo demanda).
+- Rango por defecto: **01/01/2026 → fecha actual del sistema**.
 - **Exportar a CSV** (separador `;`, compatible con Excel en español).
 - UI responsive con estados de carga (skeletons) y manejo de errores.
 
@@ -41,16 +42,26 @@ mes**, usando las fechas de inicio y fin de cada mes, y devuelve un agregado:
 ```json
 {
   "success": true,
-  "total": 9,
-  "from": "2023-11-01",
-  "to": "2025-12-30",
-  "count": 26,
+  "total": 319,
+  "from": "2026-01-01",
+  "to": "2026-09-03",
+  "count": 9,
   "months": [
-    { "month": "2025-12", "label": "Diciembre", "totalConsultas": 8, ... }
+    { "month": "2026-05", "label": "Mayo", "totalConsultas": 60, ... }
   ],
   "errors": 0
 }
 ```
+
+### Rango de fechas por defecto
+
+- **Fecha de inicio:** `01/01/2026`.
+- **Fecha final:** la fecha actual del sistema (calculada dinámicamente).
+
+El usuario puede modificar el rango desde el dashboard mediante los campos de
+fecha y el botón **Aplicar rango**. La fecha final por defecto se obtiene de
+`new Date()` en el cliente y en el servidor, por lo que siempre refleja el día
+de hoy en formato `YYYY-MM-DD`.
 
 El token de autorización se lee del servidor (nunca se expone al cliente).
 
